@@ -1,0 +1,1 @@
+lct -lang c chkstat.c chkstat.h chksum.c chksum.h comm.c comm.h commands.c commands.h init.c init.h io_config.c io_config.h psc.c psc.h response.c response.h user.h utility.c utility.h try.h adc.h usb_function.h usb_function.c -o sloc_cnt.log

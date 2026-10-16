@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="4">
+        <file>
+            <url>file:/C:/Dan/Projects/Code/PSC/ALEX_VERSION_04_28_2021/chkstat.c</url>
+            <bookmark id="4">
+                <name/>
+                <line>55</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
+            <url>file:/C:/Dan/Projects/Code/PSC/ALEX_VERSION_04_28_2021/commands.c</url>
+            <bookmark id="3">
+                <name/>
+                <line>895</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/paul.whelan/Downloads/PSC_%20Starting_point/ALEX_VERSION_04_28_2021/chkstat.c</file>
+            <file>file:/C:/Users/paul.whelan/Downloads/PSC_%20Starting_point/ALEX_VERSION_04_28_2021/Utility.c</file>
+            <file>file:/C:/Users/paul.whelan/Downloads/PSC_%20Starting_point/ALEX_VERSION_04_28_2021/utility.h</file>
+            <file>file:/C:/Users/paul.whelan/Downloads/PSC_%20Starting_point/ALEX_VERSION_04_28_2021/response.c</file>
+            <file>file:/C:/Users/paul.whelan/Downloads/PSC_%20Starting_point/ALEX_VERSION_04_28_2021/commands.c</file>
+            <file>file:/C:/Users/paul.whelan/Downloads/PSC_%20Starting_point/ALEX_VERSION_04_28_2021/init.c</file>
+            <file>file:/C:/Users/paul.whelan/Downloads/PSC_%20Starting_point/ALEX_VERSION_04_28_2021/i2c.h</file>
+            <file>file:/C:/Users/paul.whelan/Downloads/PSC_%20Starting_point/ALEX_VERSION_04_28_2021/chkstat.h</file>
+            <file>file:/C:/Users/paul.whelan/Downloads/PSC_%20Starting_point/ALEX_VERSION_04_28_2021/psc.c</file>
+            <file>file:/C:/Users/paul.whelan/Downloads/PSC_%20Starting_point/ALEX_VERSION_04_28_2021/commands.h</file>
+            <file>file:/C:/Users/paul.whelan/Downloads/PSC_%20Starting_point/ALEX_VERSION_04_28_2021/response.h</file>
+        </group>
+    </open-files>
+</project-private>

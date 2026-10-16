@@ -1,0 +1,24 @@
+lang	SLOC	code	data	dir	comment	total	file
+----	----	----	----	---	-------	-----	----
+cpp	364	309	47	8	179	543	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/chkstat.c
+cpp	184	11	167	6	86	270	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/chkstat.h
+cpp	36	31	4	1	23	59	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/chksum.c
+cpp	9	1	4	4	21	30	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/chksum.h
+cpp	376	362	12	2	203	579	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/commands.c
+cpp	135	7	123	5	37	172	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/commands.h
+cpp	136	129	6	1	119	255	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/init.c
+cpp	166	14	139	13	84	250	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/init.h
+cpp	32	31	0	1	49	81	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/io_config.c
+cpp	60	7	52	1	40	100	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/io_config.h
+cpp	51	45	5	1	48	99	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/psc.c
+cpp	46	5	31	10	37	83	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/psc.h
+cpp	454	437	15	2	66	520	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/response.c
+cpp	69	7	54	8	24	93	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/response.h
+cpp	165	7	156	2	98	263	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/user.h
+cpp	595	583	11	1	220	815	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/utility.c
+cpp	186	166	10	10	85	271	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/utility.h
+cpp	166	11	145	10	81	247	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/try.h
+cpp	1426	7	1169	250	1249	2675	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/adc.h
+cpp	52	1	49	2	60	112	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/usb_function.h
+cpp	13	6	6	1	45	58	D:/WHOI/My Documents/PSC/Mydocument/firmware/PSC Firmware/PSC Firmware Rev 4 for PSC Hardware Rev 2 10-11-2011 after AST2. data/usb_function.c
+ 21 	4721	2177	2205	339	2854	7575	Totals
