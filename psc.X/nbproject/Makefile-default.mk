@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=../chkstat.c ../chksum.c ../commands.c ../init.c ../io_config.c ../psc.c ../response.c ../usb_function.c ../Utility.c
+SOURCEFILES_QUOTED_IF_SPACED=../chkstat.c ../chksum.c ../commands.c ../init.c ../io_config.c ../psc.c ../response.c ../Utility.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1472/chkstat.o ${OBJECTDIR}/_ext/1472/chksum.o ${OBJECTDIR}/_ext/1472/commands.o ${OBJECTDIR}/_ext/1472/init.o ${OBJECTDIR}/_ext/1472/io_config.o ${OBJECTDIR}/_ext/1472/psc.o ${OBJECTDIR}/_ext/1472/response.o ${OBJECTDIR}/_ext/1472/usb_function.o ${OBJECTDIR}/_ext/1472/Utility.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1472/chkstat.o.d ${OBJECTDIR}/_ext/1472/chksum.o.d ${OBJECTDIR}/_ext/1472/commands.o.d ${OBJECTDIR}/_ext/1472/init.o.d ${OBJECTDIR}/_ext/1472/io_config.o.d ${OBJECTDIR}/_ext/1472/psc.o.d ${OBJECTDIR}/_ext/1472/response.o.d ${OBJECTDIR}/_ext/1472/usb_function.o.d ${OBJECTDIR}/_ext/1472/Utility.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1472/chkstat.o ${OBJECTDIR}/_ext/1472/chksum.o ${OBJECTDIR}/_ext/1472/commands.o ${OBJECTDIR}/_ext/1472/init.o ${OBJECTDIR}/_ext/1472/io_config.o ${OBJECTDIR}/_ext/1472/psc.o ${OBJECTDIR}/_ext/1472/response.o ${OBJECTDIR}/_ext/1472/Utility.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1472/chkstat.o.d ${OBJECTDIR}/_ext/1472/chksum.o.d ${OBJECTDIR}/_ext/1472/commands.o.d ${OBJECTDIR}/_ext/1472/init.o.d ${OBJECTDIR}/_ext/1472/io_config.o.d ${OBJECTDIR}/_ext/1472/psc.o.d ${OBJECTDIR}/_ext/1472/response.o.d ${OBJECTDIR}/_ext/1472/Utility.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/_ext/1472/chkstat.o ${OBJECTDIR}/_ext/1472/chksum.o ${OBJECTDIR}/_ext/1472/commands.o ${OBJECTDIR}/_ext/1472/init.o ${OBJECTDIR}/_ext/1472/io_config.o ${OBJECTDIR}/_ext/1472/psc.o ${OBJECTDIR}/_ext/1472/response.o ${OBJECTDIR}/_ext/1472/usb_function.o ${OBJECTDIR}/_ext/1472/Utility.o
+OBJECTFILES=${OBJECTDIR}/_ext/1472/chkstat.o ${OBJECTDIR}/_ext/1472/chksum.o ${OBJECTDIR}/_ext/1472/commands.o ${OBJECTDIR}/_ext/1472/init.o ${OBJECTDIR}/_ext/1472/io_config.o ${OBJECTDIR}/_ext/1472/psc.o ${OBJECTDIR}/_ext/1472/response.o ${OBJECTDIR}/_ext/1472/Utility.o
 
 # Source Files
-SOURCEFILES=../chkstat.c ../chksum.c ../commands.c ../init.c ../io_config.c ../psc.c ../response.c ../usb_function.c ../Utility.c
+SOURCEFILES=../chkstat.c ../chksum.c ../commands.c ../init.c ../io_config.c ../psc.c ../response.c ../Utility.c
 
 
 
@@ -150,13 +150,6 @@ ${OBJECTDIR}/_ext/1472/response.o: ../response.c  nbproject/Makefile-${CND_CONF}
 	@${RM} ${OBJECTDIR}/_ext/1472/response.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/1472/response.o.d" $(SILENT) -rsi ${MP_CC_DIR}../ -c ${MP_CC} $(MP_EXTRA_CC_PRE) -g -D__DEBUG  -omf=elf -x c -c -mcpu=$(MP_PROCESSOR_OPTION) -Wall -I".." -I"." -mlarge-data -msmall-scalar -MMD -MF "${OBJECTDIR}/_ext/1472/response.o.d" -o ${OBJECTDIR}/_ext/1472/response.o ../response.c    
 	
-${OBJECTDIR}/_ext/1472/usb_function.o: ../usb_function.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
-	@${RM} ${OBJECTDIR}/_ext/1472/usb_function.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1472/usb_function.o.ok ${OBJECTDIR}/_ext/1472/usb_function.o.err 
-	@${RM} ${OBJECTDIR}/_ext/1472/usb_function.o 
-	@${FIXDEPS} "${OBJECTDIR}/_ext/1472/usb_function.o.d" $(SILENT) -rsi ${MP_CC_DIR}../ -c ${MP_CC} $(MP_EXTRA_CC_PRE) -g -D__DEBUG  -omf=elf -x c -c -mcpu=$(MP_PROCESSOR_OPTION) -Wall -I".." -I"." -mlarge-data -msmall-scalar -MMD -MF "${OBJECTDIR}/_ext/1472/usb_function.o.d" -o ${OBJECTDIR}/_ext/1472/usb_function.o ../usb_function.c    
-	
 ${OBJECTDIR}/_ext/1472/Utility.o: ../Utility.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
 	@${RM} ${OBJECTDIR}/_ext/1472/Utility.o.d 
@@ -213,13 +206,6 @@ ${OBJECTDIR}/_ext/1472/response.o: ../response.c  nbproject/Makefile-${CND_CONF}
 	@${RM} ${OBJECTDIR}/_ext/1472/response.o.ok ${OBJECTDIR}/_ext/1472/response.o.err 
 	@${RM} ${OBJECTDIR}/_ext/1472/response.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/1472/response.o.d" $(SILENT) -rsi ${MP_CC_DIR}../ -c ${MP_CC} $(MP_EXTRA_CC_PRE)  -g -omf=elf -x c -c -mcpu=$(MP_PROCESSOR_OPTION) -Wall -I".." -I"." -mlarge-data -msmall-scalar -MMD -MF "${OBJECTDIR}/_ext/1472/response.o.d" -o ${OBJECTDIR}/_ext/1472/response.o ../response.c    
-	
-${OBJECTDIR}/_ext/1472/usb_function.o: ../usb_function.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
-	@${RM} ${OBJECTDIR}/_ext/1472/usb_function.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1472/usb_function.o.ok ${OBJECTDIR}/_ext/1472/usb_function.o.err 
-	@${RM} ${OBJECTDIR}/_ext/1472/usb_function.o 
-	@${FIXDEPS} "${OBJECTDIR}/_ext/1472/usb_function.o.d" $(SILENT) -rsi ${MP_CC_DIR}../ -c ${MP_CC} $(MP_EXTRA_CC_PRE)  -g -omf=elf -x c -c -mcpu=$(MP_PROCESSOR_OPTION) -Wall -I".." -I"." -mlarge-data -msmall-scalar -MMD -MF "${OBJECTDIR}/_ext/1472/usb_function.o.d" -o ${OBJECTDIR}/_ext/1472/usb_function.o ../usb_function.c    
 	
 ${OBJECTDIR}/_ext/1472/Utility.o: ../Utility.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/_ext/1472" 

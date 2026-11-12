@@ -20,19 +20,18 @@
 * 15    Alex Franks     12/14/2019          Changed default interrupt to internal timer based
 *                                           Default system interrupts now reset instead of while(1) nop
 *                                           Uart1 RX routine set to correct buffer size (100)
+* MPSC Rework:
+* REV 1 Dan B/Paul W    10/19/2026          REV01 version for New Mini-PSC CCA
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *
 * ADDITIONAL NOTES:
-* Code Tested on:
-* WHOI PSC Firmware Development Board with PIC24FJ256GB106 controller
-* The Processor runs on 32 Mhz external crystal, communicates over
+* The Processor runs on 32MHz external crystal, communicates over
 * UART1 in 115200 baud rate at 8N1 with no hardware flow control
 **********************************************************************/
 #define USE_AND_OR
 #define SYSCLK				32000000	//External OSC Frequency
 #define HW_BOARD_VERSION	1			//HW VERSION -- Dev Board
 #define RX_BUFFER_SIZE  100
-//#define devboard			//<--delete this when not using PSC Firmware Develop Board
 
 #include "psc.h"
 
@@ -141,6 +140,8 @@ void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void)
 {                                               //this ISR is for the INTERNAL 1 second timer interrupt
     IFS0bits.T3IF = 0;                        	//clear the interrupt flag
     DatastreamFlag = 1;                        	//set Data Stream Flag
+    LED_EN = ~LED_EN; //DMB: Turn on LED every other second just to let user know we're operational
+    failsafe_check = 1;
 }
 //**************** PSC command to set data stream flag manually **************************************
 void setdsf()
@@ -215,7 +216,7 @@ void __attribute__((interrupt, auto_psv)) _MathError(void)
 int main(void)
 {
 	io_config();									//assign IOs
-        sprintf(Txdata, "WHOI PSC 2.0 %s Rev %d%s",rev_date,FWRevision,rev_letter);
+        sprintf(Txdata, "MPSC 1.0 %s Firmw Rev: %d Board Rev: %s",rev_date,MPSC_FWRevision,board_rev);
 	strcpy(UART1_TXDATA,Txdata);
 	chksumgen();
 
@@ -225,8 +226,6 @@ int main(void)
 
 	set_timing_external(0);                                //default to internal timer based interrupt
 	datastream(inhibitdatastream);					//get status data and TX via UART1
-	//sprintf(UART2_TXDATA ,"#DBG boot fc  uart2  \r\n");
-	//				IEC1bits.U2TXIE = 1;
 
 
 	while(1)
@@ -238,28 +237,17 @@ int main(void)
 			secondcnt++;
 			ClrWdt();
 		}
-		if(ADCFinished == 1)
-		{
-			DisableADC1;
-			MonitorVBUS(ADC1BUF0);
-			ADCFinished = 0;
-			ClrWdt();
-		}
 		if(DataavailableFlag)						//UART1 RX Command Received
 		{
 			response();
 			DataavailableFlag = 0;
 			ClrWdt();
 		}
-                //AHF check voltage here, if 30V, disconnect input relays and be verbose about it
-                //We could add a check in the datastream function where it calls chk_bp, but if the interrupts fail
-                //The check won't be executed
-                //Therefore call chk_bp via new function in response.c
-                failsafe_count++;
-                if(failsafe_enable & (failsafe_count >= 500000)) //500000 is roughly once per second. User can set failsafe_enable via serial/UCMD in response.c
-                {                                                //using a manual counter here instead of a timer/interrupt for less moving parts
-                    voltage_failsafe();                          //just in case "all else fails"
-                    failsafe_count = 0;
+               
+                if(failsafe_check)
+                {                                           
+                    failsafe();                     
+                    failsafe_check = 0;
                 }
 	}
 }

@@ -44,7 +44,10 @@ extern char *UART1_RXDATA;
 extern char UART1_TXDATA[2048];
 
 extern int ledflag;
-extern int rlystat;
+
+//extern int rlystat;
+extern int PV_IN_CH_ON[4];
+
 extern int datastreamcnt;
 extern int datastreamcnt_loc;
 extern double bp_v;
@@ -86,17 +89,17 @@ extern int chksumchk(char *chksum);
 extern double get_bt_temp(const long batt_flag);
 extern char *chk_ext_pwr();
 extern int set_battchrg_level1(int regaddr, long intlevel, double fralevel);
-extern long get_battchrg_level(int regaddr, double *fralevel);
+//extern long get_battchrg_level(int regaddr, double *fralevel);
 extern double UpdateCoulombCount(double btx_i, long *intccx, double *fraccx);
 extern void update_elapsed_time();
 extern void set_elapsed_time(unsigned long etime);
 extern unsigned long get_elapsed_time();
-extern int rlydrive(unsigned int mask, int state);
+//extern int rlydrive(unsigned int mask, int state);
 extern void eepromWrite(char *location, char *data);
 extern void eepromRead(char *location, char *length, char *data);
 extern void tx_comm();
 extern void chk_wt_shunt(int wt);
-extern int rlydrive(unsigned int mask, int state);
+//extern int rlydrive(unsigned int mask, int state);
 extern void flagRelayFault(double curr, double volt, unsigned int pwrmask,unsigned int fltmask);
 
 //for group 1 fault:

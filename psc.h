@@ -15,6 +15,10 @@
 *											change the FULLCHARGE in user.h
 * 2.1		Joseph Zhu		08/11/2011		Update the SOC calculation formula
 *											in init.c and command.c
+* 
+* MPSC Rework:
+* REV 1 Dan B/Paul W    10/19/2026          REV01 version for New Mini-PSC CCA
+*
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *
 * ADDITIONAL NOTES
@@ -34,19 +38,9 @@
 #include "userTypeDefs.h"
 #include "adc.h"
 
-unsigned int FWRevision = 16;		//hard coded Firmware Revision   Rev. 6 Oct 2013 fixed Rx lockup bug and CVTR temperature reading
-								// Version 8 July 2014 fixed battery charging test to SOC || Vmain. And blanked out CVTR data and fault flags when no board present
-								// Version 9 August 2014 added HP functionality and general cleanup 
-								// Version 10 Oct 2014 added Fuel Cell functionality
-								// Version 11 fixed HVCVTR/external charger bug and minor fixes 
-								// Version 14 same as v12, removed automatic relay control, enabled 'bypass' mode, removed fuel cell functionality, tried to keep everything else the same
-								// Version 15 Dec 2019 modified connect all behavior, external charge behavior, add leds_on and leds_off commands, set_dsf command
-								// change to internal timer interrupt by default. Change to 111111 baud.
-								//Version 15a March 2020 hard code "external pv"
-								//Version 16a April 2020 added failsafe voltage cutoff, checked at 1hZ. Filtered out voltage readings above 80v in chk_bp
-								//            also commented out unused code and fixed compilation warnings. Created rev_date below and moved boot message to psc.c
-char rev_letter[2] = "a";
-char rev_date[9] = "04/23/20";
+unsigned int MPSC_FWRevision = 1;
+char board_rev[4] = "0.1";
+char rev_date[11] = "10/19/2026";
 
 const int MAXEEPROMBYTES = 255;
 
@@ -57,7 +51,11 @@ unsigned int override_flag = 0x1FF;
 
 double totalinputcurrent = 0.0;
 int ST_override = OFF;
-int rlystat;
+
+//int rlystat;
+//DMB: Replacing with simple 4-point array for PV input PFETs
+int PV_IN_CH_ON[4] = {0,0,0,0};
+
 int ledflag = 0;
 int inhibitdatastream = OFF;	//data stream is permitted by default
 int datastreamcnt = 5;			//datastream frequency default once every 5 sec
@@ -81,8 +79,9 @@ double CVLMIN = 18.0;			//the minimum value for the CVL Disable limit
 double CVLMAX = 36.0;			//the maximum value for the CVL ENable Limit
 double SOCMIN = 50.0;			//the minimum recommended SOC value for the charge cycle threshold
 double VMAX = 31.0;               //maximum system voltage before we start disconnecting relays
-int failsafe_flag = 0;            //flag so that we only emergency disconnect relays once
-int failsafe_enable = 1;          //enable for the voltage failsafe
+int failsafe_flag = 0;            //flag to record failsafe attempts
+//int failsafe_enable = 1;          //enable for the voltage failsafe
+int failsafe_check =1;
 long failsafe_count = 0;           //counter to run the failsafe in the main loop
 
 unsigned char DataAvailable=0;
@@ -115,4 +114,4 @@ extern void rtclk_reset();
 extern void chksumgen();
 extern void MonitorMedia();
 extern void MonitorVBUS(unsigned int ADCResult);
-extern void voltage_failsafe();
+extern void failsafe();

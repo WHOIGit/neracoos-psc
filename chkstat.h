@@ -12,6 +12,9 @@
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 * 1		Joseph Zhu    	10/28/2010		Initial File Creation 
 *
+* MPSC Rework:
+* REV 1 Dan B/Paul W    10/19/2026          REV01 version for New Mini-PSC CCA
+
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *
 * ADDITIONAL NOTES
@@ -49,32 +52,23 @@
 #define BATTTEMP 0
 #define CVTRTEMP 1
 
-//const double BATTSTRINGCURRENTFULLSCALE = 81.92 / Rsenbt; //in mA, the LTC4151 current full scale is 81.92 mv
-//const double BATTSTRINGCURRENTFULLSCALE = 81.9 / Rsenbt; //in mA, the LTC4151 current full scale is 81.92 mv -- changed to 81.9 on 8-22-2011 since the fullscale is 4095
-const double BATTSTRINGCURRENTFULLSCALE = 4000; //4095 is too high. Need to consider the difference btw charge and discharge currents
-unsigned char cvtrbuffer[75]={};
-
 extern double bp_v;				//buoy power voltage level.
-extern double ValleyBottom;
 
-extern double DCVLMAX;			//the maximum delta between CVL Enable and CVL Disable limits
-extern double CVLMIN;			//the minimum value for the CVL Disable limit
-extern double CVLMAX;			//the maximum value for the CVL ENable Limit
 extern double V_ERR;            //the maximum voltage before we call it an error and set voltage to -1 in chk_bp
 
-extern const long FULLCHARGE;
+//extern const long FULLCHARGE;
 extern const char ID_pv1[];
 extern const char ID_pv2[];
 extern const char ID_pv3[];
 extern const char ID_pv4[];
 extern const char ID_bt1[];
 extern const char ID_bt2[];
-extern const char ID_conv[];
+
 extern const char ID_ext_pwr[];
 extern const char ID_psc_temp[];
 extern const char ID_psc_htl[];
 extern const char ID_buoy_pwr[];
-extern const char ID_override[];
+
 extern const char ID_hyd[];      // ppw 08032026
 
 //PSC Hardware Profile
@@ -100,29 +94,7 @@ extern const int EEPROMi2c_CH;
 extern const int EEPROM_SADDR;
 extern const int HYDi2c_CH;          // ppw 08032026
 extern const int HYD_SADDR;           // ppw 08032026
-extern const int RLYST_REGADDR;
-extern const int OVERRIDE_REGADDR;
-extern const int BRDCONF_REGADDR;
-extern const int PVCONFIG_REGADDR;
-extern const int ELPSDTM_REGADDR;
-extern const int CVTRCVL_REGADDR;
-extern const int BATTLVL1_REGADDR;
-extern const int BATTLVL2_REGADDR;
-extern const int VALLEYBTM_REGADDR;
-extern const int CHRGCTRL_REGADDR;
-extern const int PN_REGADDR;
-extern const int SN_REGADDR;
-extern const int HWREV_REGADDR;
-extern const int FWREV_REGADDR;
-extern const int CVTR_CH;
-extern const int CVTR_SADDR;
-extern const int CVTR_REG1;
-extern const int CVTR_INTLCK_V_REG;
-extern const int CVTR_OI_REG;
-extern const int CVTR_OV_REG;
-extern const int CVTR_CTRL_REG;
-extern const int CVTR_SWGFREADING_P_REG;
-extern const int CVTR_SWGFREADING_N_REG;
+
 
 //for group 1
 extern const unsigned int BT11OVERTEMP;	//Battery 1 of String 1 Overtemp
@@ -135,6 +107,7 @@ extern const unsigned int BT1CHGSENFLT;	//Battery String 1 Charging Sensor Fault
 extern const unsigned int BT1DCHGSNFLT;	//Battery String 1 Disharging Sensor Fault
 extern const unsigned int BT2CHGSENFLT;	//Battery String 2 Charging Sensor Fault
 extern const unsigned int BT2DCHGSNFLT;	//Battery String 2 Disharging Sensor Fault
+
 //for group 2
 extern const unsigned int PV1SENSORFLT;	//PV1 Sensor Fault
 extern const unsigned int PV2SENSORFLT;	//PV2 Sensor Fault
@@ -155,8 +128,7 @@ extern const unsigned int PV1RELAYFLT;	//PV1 Control Relay Fault
 extern const unsigned int PV2RELAYFLT;	//PV2 Control Relay Fault
 extern const unsigned int PV3RELAYFLT;	//PV3 Control Relay Fault
 extern const unsigned int PV4RELAYFLT;	//PV4 Control Relay Fault
-extern const unsigned int CVTRSWGFLT;	//HV Power CVTR Sea Water Ground Fault
-extern const unsigned int CVTRGENFLT;	//HV Power CVTR General Fault
+
 extern const unsigned int PSCRESETFLG;	//PSC Hard Reset Flag
 extern const unsigned int PSCPORSTFLG;	//PSC Power On Reset Flag
 //for group 4 fault:
@@ -164,7 +136,7 @@ extern const unsigned int PV1FUSEFLT;	//PV1 Fuse Fault
 extern const unsigned int PV2FUSEFLT;	//PV2 Fuse Fault
 extern const unsigned int PV3FUSEFLT;	//PV3 Fuse Fault
 extern const unsigned int PV4FUSEFLT;	//PV4 Fuse Fault
-extern const unsigned int CVTFCSHTDWN;	//CVT Force Shut Down by PSC indiator
+
 
 // hydrogen sensor faults - ppw 08032026
 extern const unsigned int HYD3PCTFLT;    // Thermal runaway h2 > 3% fault
@@ -184,26 +156,15 @@ extern unsigned int CVRMASK;
 extern unsigned int ALLMASK;
 extern unsigned int STDMASK;
 
-extern int ledflag;
-extern int rlystat;
-extern int override_flag;
+extern int PV_IN_CH_ON[4];
+
 extern unsigned int error_flag_1;
 extern unsigned int error_flag_2;
 extern unsigned int error_flag_3;
 extern unsigned int error_flag_4;
-extern int CONVPWRSTAT;
-extern int CONVOUTSTAT;
-extern int CVTRINTLCKSTAT;
-extern int CVTR_SWGF_TEST;
 
-extern double batt_chg_status;
 extern int secondcnt;
 extern double totalinputcurrent;
-
-extern double cvtr_cvl_enab, cvtr_cvl_disab;
-extern int swgf_dly;
-extern int swgfcnt;
-//extern unsigned int channel;
 
 //prototype
 void chk_bt(char *bt_status,char *bt_detail, double *bt_v, double *bt_t);
@@ -211,26 +172,16 @@ void chk_pv(char *pv_status, char *pv_detail);
 void chk_ext_pwr(char *ex_status);
 void chk_bp(char *bp_status, char *psc_t);
 void chk_psch(char *psch_status);
-void chk_hyd(char *hyd_status); // ppw 08032026
-void chk_conv(char *conv_status, char *cvtr_detail, char *swgf_status);
+void chk_hyd(char *hyd_status, double *H);
+int  cal_hyd(void); //DMB 10-26-2026
+
 int bin2dec(char binary);
-int device_state(unsigned int mask);
-//int i2c_getstat(int i2c_ch, int SlaveAddress, int regaddr, int length);
-void flagRelayFault(double curr, double volt, unsigned int pwrmask,unsigned int fltmask);
-int pwrsenflt();
 
 extern int i2c_getstat1(int i2c_ch, int SlaveAddress, int regaddr, int length, unsigned char *I2CRead);
-//int i2c_putstat(int i2c_ch, int SlaveAddress, int regaddr);
-//extern double get_data(int base, double resolution);
+extern int i2c_putstat1(int i2c_ch, int SlaveAddress, int regaddr,unsigned char *I2CWrite, int wrt_cnt);
+
 extern double get_data1(unsigned char *i2cdata, int base, double resolution);
 extern double get_bt_temp(unsigned char *i2cdata, int baseaddress, const long batt_flag, int type);
-extern void wnd_speed(char *speed, char *cmdstat);
-extern void RestoreRlyState();
-extern int rlydrive(unsigned int mask, int state);
-extern int set_battchrg_level(int regaddr, double level);
-extern int set_battchrg_level1(int regaddr, long intlevel, double fralevel);
-extern int batterycharging(double bt_t, double bt_v, double bt1_i, double bt2_i);
+
 extern double batterystringvoltage(double v1, double v2);
-//extern double max(double t1, double t2);
-extern void get_pvcntlstat(char *cmd, char *status_data,char *detail);
-extern void switchcvtrrelay(int cntl);
+

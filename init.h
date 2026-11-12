@@ -12,6 +12,9 @@
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 * 1		Joseph Zhu    	10/28/2010		Initial File Creation 
 *
+* MPSC Rework:
+* REV 1 Dan B/Paul W    10/19/2026          REV01 version for New Mini-PSC CCA
+
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *
 * ADDITIONAL NOTES
@@ -51,7 +54,7 @@
 
 //unsigned int channel = ADC_CH0_POS_SAMPLEA_AN4;
 
-extern unsigned int FWRevision;
+extern unsigned int MPSC_FWRevision;
 
 extern unsigned int error_flag_1;
 extern unsigned int error_flag_2;
@@ -68,7 +71,10 @@ extern char *UART2_RXDATA;
 extern char UART2_TXDATA[64];
 
 extern int ledflag;
-extern int rlystat;
+
+//extern int rlystat;
+extern int PV_IN_CH_ON[4];
+
 extern int datastreamcnt;
 extern int datastreamcnt_loc;
 extern int inhibitdatastream;
@@ -154,18 +160,18 @@ extern void OpenUART1port(unsigned int config1,unsigned int config2, unsigned in
 
 //extern int i2c_getstat(int i2c_ch, int SlaveAddress, int regaddr, int length);
 extern int i2c_getstat1(int i2c_ch, int SlaveAddress, int regaddr, int length, unsigned char *i2cdata);
-extern int SPI1tx(unsigned int data, int CE_type);
+//extern int SPI1tx(unsigned int data, int CE_type);
 
 //extern void i2c_putstat(int i2c_ch, int SlaveAddress, int regaddr);
 extern void i2c_putstat1(int i2c_ch, int SlaveAddress, int regaddr, unsigned char *I2CWrite, int wrt_cnt);
 extern void chksumgen();
 extern int chksumchk(char *chksum);
 extern double get_bt_temp(const long batt_flag);
-extern long get_battchrg_level(int regaddr, double *fralevel);
+//extern long get_battchrg_level(int regaddr, double *fralevel);
 extern double get_valleybtm(int regaddr);
 extern int allPVConfig();
 extern int get_override_state();
-extern int set_override_state();
+//extern int set_override_state();
 extern void helplist();
 extern void ClrResetFlag();
 extern int hex2dec(char data);
